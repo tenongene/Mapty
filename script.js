@@ -1,4 +1,4 @@
-// 'use strict';
+'use strict';
 
 class Workout {
   date = new Date();
@@ -107,7 +107,7 @@ class App {
 
     L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
       attribution:
-        '&copy; <a href="https://www.openstreetmap.org copyright">OpenStreetMap</a> contributors',
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(this.#map);
 
     //clicks on the map
@@ -152,10 +152,10 @@ class App {
     e.preventDefault();
 
     //Get data from form
-    const type = +inputType.value;
+    const type = inputType.value;
     const distance = +inputDistance.value;
     const duration = +inputDuration.value;
-    const { lat, lng } = this.#mapEvent.latlng; //FIXME:
+    const { lat, lng } = this.#mapEvent.latlng; 
     let workout;
 
     //If workout is Running, create runnning object
@@ -202,9 +202,9 @@ class App {
     //set Local storage to all workouts
     this._setLocalStorage();
   }
-  // TODO:
+  
   _renderWorkoutMarker(workout) {
-    L.marker(workout.coords) // FIXME:
+    L.marker(workout.coords) 
       // L.marker(Object.values(this.#mapEvent.latlng))
       .addTo(this.#map)
       .bindPopup(
@@ -277,7 +277,7 @@ class App {
 
     const workoutEl = e.target.closest('.workout');
 
-    console.log(workoutEl);
+    // console.log(workoutEl);
 
     if (!workoutEl) return;
 
@@ -285,7 +285,7 @@ class App {
       work => work.id === workoutEl.dataset.id
     );
 
-    this.map.setView(workout.coords, this.#mapZoomLevel, {
+    this.#map.setView(workout.coords, this.#mapZoomLevel, {
       animate: true,
       pan: {
         duration: 1,
