@@ -66,6 +66,11 @@ const inputDistance = document.querySelector('.form__input--distance');
 const inputDuration = document.querySelector('.form__input--duration');
 const inputCadence = document.querySelector('.form__input--cadence');
 const inputElevation = document.querySelector('.form__input--elevation');
+const reset = document.querySelector('.reset');
+const close = document.querySelector('.close');
+const cancel = document.querySelector('.escape');
+const modal = document.querySelector('.modal');
+const overlay = document.querySelector('.overlay');
 
 class App {
   #map;
@@ -84,6 +89,11 @@ class App {
     form.addEventListener('submit', this._newWorkout.bind(this));
     inputType.addEventListener('change', this._toggleElevationField);
     containerWorkouts.addEventListener('click', this._moveToPopup.bind(this));
+    reset.addEventListener('click', () => modal.classList.remove('hidden'));
+    reset.addEventListener('click', () => overlay.classList.remove('hidden'));
+    close.addEventListener('click', () => this.reset());
+    cancel.addEventListener('click', () => modal.classList.add('hidden'));
+    cancel.addEventListener('click', () => overlay.classList.add('hidden'));
   }
 
   _getPosition() {
@@ -155,7 +165,7 @@ class App {
     const type = inputType.value;
     const distance = +inputDistance.value;
     const duration = +inputDuration.value;
-    const { lat, lng } = this.#mapEvent.latlng; 
+    const { lat, lng } = this.#mapEvent.latlng;
     let workout;
 
     //If workout is Running, create runnning object
@@ -202,9 +212,9 @@ class App {
     //set Local storage to all workouts
     this._setLocalStorage();
   }
-  
+
   _renderWorkoutMarker(workout) {
-    L.marker(workout.coords) 
+    L.marker(workout.coords)
       // L.marker(Object.values(this.#mapEvent.latlng))
       .addTo(this.#map)
       .bindPopup(

@@ -31,6 +31,17 @@
     <title>mapty // Map your workouts</title>
   </head>
   <body>
+    <div class="overlay hidden"></div>
+    <div class="modal hidden">
+      <p class="reset__text">
+        Are you sure you want to reset? All your current workout data will be
+        lost.
+      </p>
+      <div class="response">
+        <button class="close">Yes</button>
+        <button class="escape">No</button>
+      </div>
+    </div>
     <div class="sidebar">
       <img src="logo.png" alt="Logo" class="logo" />
 
@@ -120,6 +131,8 @@
           </div>
         </li> -->
       </ul>
+
+      <button class="reset">Reset</button>
 
       <p class="copyright">
         &copy; Copyright by
